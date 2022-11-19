@@ -4,6 +4,7 @@
   "description": "",
   "main": "generator.js",
   "scripts": {
+    "start": "node generator.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
