@@ -1,6 +1,15 @@
 var telepon = require("@namchee/telepon")
+const { Telegraf } = require('telegraf')
+require('dotenv').config();
 
-const inputPhoneNumber = telepon.parse("0821 49283-193");
-const formattedPhoneNumber = telepon.format(inputPhoneNumber, telepon.Standard.E164)
-const wameFormat = `https://wa.me/${formattedPhoneNumber}`
-console.log(wameFormat)
+const bot = new Telegraf(process.env.MBOT_TOKEN)
+
+bot.on('text', ctx => {
+    console.log(ctx.message.text);
+    const inputPhoneNumber = telepon.parse(ctx.message.text);
+    const formattedPhoneNumber = telepon.format(inputPhoneNumber, telepon.Standard.E164)
+    const wameFormat = `https://wa.me/${formattedPhoneNumber}`
+    ctx.reply(wameFormat)
+})
+
+bot.launch()
