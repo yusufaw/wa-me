@@ -4,7 +4,17 @@ require('dotenv').config();
 
 const bot = new Telegraf(process.env.MBOT_TOKEN)
 
+bot.on('text', ctx => {
+    if (ctx.message.text.includes("wame")) {
+        generateWaMeUrl(ctx);
+    }
+})
+
 bot.command('wame', ctx => {
+    generateWaMeUrl(ctx);
+})
+
+function generateWaMeUrl(ctx) {
     console.log(ctx.message.text);
     try {
         const inputPhoneNumber = telepon.parse(ctx.message.text);
@@ -17,6 +27,6 @@ bot.command('wame', ctx => {
     } catch (error) {
         ctx.reply("Nomor telepon tidak sesuai");
     }
-})
+}
 
 bot.launch()
