@@ -5,7 +5,7 @@ require('dotenv').config();
 const bot = new Telegraf(process.env.MBOT_TOKEN)
 
 bot.on('text', ctx => {
-    if (ctx.message.text.includes("wame")) {
+    if (ctx.message.text.toLowerCase().includes("wame")) {
         generateWaMeUrl(ctx);
     }
 })
